@@ -2,7 +2,7 @@
 
 "use strict";
 
-window.errorpopup = (function () {
+var errorpopup = (function () {
   let exports = {};
 
   let messages = {
