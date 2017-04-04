@@ -1,4 +1,7 @@
 /* globals catcher, onboardingHtml, onboardingCss, browser, util, shooter */
+
+"use strict";
+
 window.slides = (function () {
   let exports = {};
 

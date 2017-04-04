@@ -1,6 +1,8 @@
 /* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
 /* globals selectorLoader, analytics, communication, catcher, makeUuid, auth */
 
+"use strict";
+
 window.main = (function () {
   let exports = {};
 

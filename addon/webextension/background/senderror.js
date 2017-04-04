@@ -1,5 +1,7 @@
 /* globals analytics, browser, communication, makeUuid, Raven, catcher, auth */
 
+"use strict";
+
 window.errorpopup = (function () {
   let exports = {};
 
