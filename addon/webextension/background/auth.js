@@ -1,5 +1,5 @@
 /* globals browser */
-/* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn, communication */
+/* globals main, makeUuid, deviceInfo, dump, analytics, catcher, defaultSentryDsn, communication */
 
 "use strict";
 
@@ -20,7 +20,7 @@ var auth = (function () {
       registrationInfo = result.registrationInfo;
     } else {
       registrationInfo = generateRegistrationInfo();
-      console.info("Generating new device authentication ID", registrationInfo);
+      dump("Generating new device authentication ID", registrationInfo);
       return browser.storage.local.set({registrationInfo});
     }
   }));
@@ -46,7 +46,7 @@ var auth = (function () {
       req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
       req.onload = catcher.watchFunction(() => {
         if (req.status == 200) {
-          console.info("Registered login");
+          dump("Registered login");
           initialized = true;
           saveAuthInfo(JSON.parse(req.responseText));
           resolve(true);
@@ -100,7 +100,7 @@ var auth = (function () {
         } else {
           initialized = true;
           let jsonResponse = JSON.parse(req.responseText);
-          console.info("Screenshots logged in");
+          dump("Screenshots logged in");
           analytics.sendEvent("login");
           saveAuthInfo(jsonResponse);
           if (ownershipCheck) {

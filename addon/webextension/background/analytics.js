@@ -1,4 +1,4 @@
-/* globals main, auth, catcher, deviceInfo, communication */
+/* globals auth, catcher, communication, deviceInfo, dump, main */
 
 "use strict";
 
@@ -15,7 +15,7 @@ var analytics = (function () {
       return Promise.resolve();
     }
     if (! telemetryPref) {
-      console.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
+      dump(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       return Promise.resolve();
     }
     if (typeof label == "object" && (! options)) {
@@ -45,7 +45,7 @@ var analytics = (function () {
       for (let testName in abTests) {
         options[abTests[testName].gaField] = abTests[testName].value;
       }
-      console.info(`sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
+      dump(`sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       req.send(JSON.stringify({
         deviceId: auth.getDeviceId(),
         event: eventCategory,
